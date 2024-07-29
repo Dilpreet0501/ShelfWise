@@ -1,0 +1,85 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  
+  }
+  
+  body{
+    
+    width: 100%;
+    height: 100%; 
+   background-image: url("./../../../public/bg.jpg");
+      background-size: cover; 
+      background-position: center; 
+      background-repeat: no-repeat;
+  
+  }
+  
+  
+  
+  .content {
+    padding-left: 4rem !important;
+padding-right: 4rem !important;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   margin-top: -70px;
+   flex-direction: row;
+   gap: 100px;
+  }
+  @keyframes float{
+    0%{
+      transform: translateY(0);
+    }
+    50%{
+      transform: translateY(35px);
+    }
+    100%{
+      transform: translateY(0);
+    }
+  }
+  .grp{
+  height: 500px;
+ width: 600px;
+ transition: background-image 0.5s ease;
+ animation: float 5s ease-in-out infinite;
+  }
+  
+
+  
+  .text {
+  margin-top: 30px;
+    max-width: 500px;
+    /* text-align: left; */
+
+  }
+ .para{
+    font-size: 15px;
+    color:rgb(52, 51, 51);
+    font-family: Montserrat;
+  }
+  @keyframes typing{
+    from { width: 0 }
+    to { width: 100% }
+  }
+  .head{
+    color: #c51550;
+  overflow: hidden;
+  font-family: Signika;
+  white-space: nowrap;
+  animation:  typing 1.5s forwards;
+  font-size: 2.0rem;
+  width: 0;
+  }
+  .sub{
+    color: #282727;
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+  }
+  .redhead{
+font-size: 1rem;
+color: #c51550;
+  }
