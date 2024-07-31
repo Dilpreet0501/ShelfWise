@@ -1,49 +1,33 @@
 import React from 'react';
-
+import { useLocation } from 'react-router-dom';
 import BookShow from './bookshow.js';
 
-const Book=()=> {
-    const books = [
-        {
-          image: "./ctc1.png",
-          name: 'Diverse Literary Adventures',
-          rating: 4.5,
-          author: 'Author Name'
-        },
-        {
-          image: "./ctc1.png",
-          name: 'Cost-Efficient Reading',
-          rating: 4.7,
-          author: 'Author Name'
-        },
-        {
-          image: "./ctc1.png",
-          name: 'Connect with Like-Minded Readers',
-          rating: 4.8,
-          author: 'Author Name'
-        },
-        {
-          image: "./ctc1.png",
-          name: 'Revitalize Your Bookshelf',
-          rating: 4.9,
-          author: 'Author Name'
-        }
-      ];
+const Book = () => {
+  const location = useLocation();
+  const { state } = location;
+  const books = state ? state.recommendations: [];
+  
   return (
     <div className="bookie">
       <div className="books-container">
-        {books.map((book, index) => (
-          <BookShow
-            key={index}
-            image={book.image}
-            name={book.name}
-            rating={book.rating}
-            author={book.author}
-          />
-        ))}
+        {books && books.length > 0 ? (
+          books.map((book, index) => (
+            <BookShow
+              key={index}
+              image={book.image_url}
+              name={book.title}
+              rating={book.average_rating.toFixed(1)}  
+              author={book.author}
+            />
+          ))
+        ) : (
+          <p>No books found</p>
+        )}
       </div>
     </div>
   );
 }
 
 export default Book;
+
+

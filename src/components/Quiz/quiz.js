@@ -1,4 +1,7 @@
 import React, { useState } from 'react';
+import {useNavigate} from 'react-router-dom';
+import { useDarkMode } from '../../Darkmode';
+import axios from 'axios';
 import './quiz.css';
 
 const questions = [
@@ -39,6 +42,8 @@ const questions = [
 ];
 
 const Quiz = () => {
+  const { isDarkMode } = useDarkMode();
+  const navigate = useNavigate();  
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [answers, setAnswers] = useState({
     feeling: '',
@@ -67,9 +72,26 @@ const Quiz = () => {
     setCurrentQuestionIndex(currentQuestionIndex - 1);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
     console.log(answers);
+    try {
+      const response = await axios.post('https://shelfwise-backend-render.onrender.com/predict',{  
+        book_name: answers.lastBook
+      });
+       
+      const data = response.data;
+      if (response.status === 200){
+      
+        navigate('/books', { state: { recommendations: data.recommendations } });
+      } else {
+        console.error(data.error);
+      }
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+    
+  
   };
 
   const isCurrentQuestionAnswered = () => {
@@ -79,14 +101,14 @@ const Quiz = () => {
 
   return (
     <>
-      <h2 className="form-title">Discover your reading personality!</h2>
-      <div className="form-container">
+       <h2 className={`form-title ${isDarkMode ? 'dark' : ''}`}>Discover your reading personality!</h2>
+      <div className={`form-container ${isDarkMode ? 'dark' : ''}`}>
         <form onSubmit={handleSubmit}>
-          <h3 className="question-title">{currentQuestion.question}</h3>
+          <h3 className={`question-title ${isDarkMode ? 'dark' : ''}`}>{currentQuestion.question}</h3>
           {currentQuestion.type === 'radio' && (
             <div className="options-container">
               {currentQuestion.options.map((option) => (
-                <label key={option} className="option-label">
+                <label key={option} className={`option-label ${isDarkMode ? 'dark' : ''}`}>
                   <input
                     type="radio"
                     name={currentQuestion.name}
@@ -102,7 +124,7 @@ const Quiz = () => {
             <input
               type="text"
               name={currentQuestion.name}
-              className="input-text"
+              className={`input-text ${isDarkMode ? 'dark' : ''}`}
               onChange={handleChange}
               value={answers[currentQuestion.name]}
             />
@@ -124,5 +146,4 @@ const Quiz = () => {
     </>
   );
 };
-
 export default Quiz;

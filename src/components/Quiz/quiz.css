@@ -12,7 +12,9 @@
     background-position: center;
     background-repeat: no-repeat;
   }
-  
+  /* body .dark{
+    background-image: url("./../../../public/darkmode_bg.png"); 
+  } */
   .form-container {
     background: transparent;
     color: rgb(52, 51, 51);

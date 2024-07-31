@@ -16,7 +16,13 @@ body{
    
     
 }
-
+/* body .dark{  width: 100%;
+  height: 100% !important; 
+  background-size: cover; 
+  background-position: center; 
+  background-repeat: no-repeat;
+  background-image: url("./../../../public/darkmode_bg.png"); 
+} */
 
 
 .main-content {
