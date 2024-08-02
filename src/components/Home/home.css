@@ -1,3 +1,5 @@
+
+
 * {
   margin: 0;
   padding: 0;
@@ -12,7 +14,9 @@ body {
   background-position: center;
   background-repeat: no-repeat;
 }
-
+body.dark {
+  background-image: url("./../../../public/darkmode_bg.png") !important;
+}
 .main-content {
   padding-left: 4rem !important;
   padding-right: 4rem !important;
@@ -24,6 +28,12 @@ body {
   margin-top: 0px;
   flex-direction: row;
   gap: 100px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.main-content.dark {
+  
+  color: #ffffff;
 }
 
 .text-content {
@@ -35,6 +45,10 @@ body {
   font-family: Montserrat;
   font-size: 15px;
   color: rgb(52, 51, 51);
+}
+
+.span.dark {
+  color: rgb(200, 200, 200);
 }
 
 @keyframes typing {
@@ -57,14 +71,26 @@ body {
   width: 0;
 }
 
-.wave-icon {
-  transform: rotate(-300deg);
+.h1.dark {
+  color: #ff6b81;
+  border-right: .15em solid #ff6b81;
 }
 
+.wave-icon {
+  transform: rotate(-300deg);
+ color: #c51550;
+}
+.wave-icon .dark{
+color:#ff6b81;
+}
 .p {
   font-size: 20px;
   color: black;
   font-family: Montserrat;
+}
+
+.p.dark {
+  color: white;
 }
 
 @keyframes pulse {
@@ -90,8 +116,16 @@ body {
   box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
 }
 
+.read-more.dark {
+  background-color: #ff6b81;
+}
+
 .read-more:hover {
   background-color: #f24a8a;
+}
+
+.read-more.dark:hover {
+  background-color: #e97486;
 }
 
 @keyframes float {

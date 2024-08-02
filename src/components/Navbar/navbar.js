@@ -83,7 +83,7 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="navbar-end">
-          <form onSubmit={handleSearchSubmit} className="search-form">
+          <form onSubmit={handleSearchSubmit} className={`search-form ${isDarkMode ? 'dark':''}`}>
             <input
               type="text"
               placeholder="Search books..."
@@ -92,7 +92,7 @@ const Navbar = () => {
               className="search-input"
               ref={navRef}
             />
-            <button type="submit" className="search-button">
+            <button type="submit" className={`search-button ${isDarkMode ? 'dark':''}`}>
               <FaSearch />
             </button>
           </form>

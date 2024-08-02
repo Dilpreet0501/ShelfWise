@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {useNavigate} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useDarkMode } from '../../Darkmode';
 import axios from 'axios';
 import './quiz.css';
@@ -72,17 +72,16 @@ const Quiz = () => {
     setCurrentQuestionIndex(currentQuestionIndex - 1);
   };
 
-  const handleSubmit = async(e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(answers);
     try {
-      const response = await axios.post('https://shelfwise-backend-render.onrender.com/predict',{  
+      const response = await axios.post('https://shelfwise-backend-render.onrender.com/predict', {  
         book_name: answers.lastBook
       });
        
       const data = response.data;
-      if (response.status === 200){
-      
+      if (response.status === 200) {
         navigate('/books', { state: { recommendations: data.recommendations } });
       } else {
         console.error(data.error);
@@ -90,8 +89,6 @@ const Quiz = () => {
     } catch (error) {
       console.error('Error fetching data:', error);
     }
-    
-  
   };
 
   const isCurrentQuestionAnswered = () => {
@@ -101,7 +98,7 @@ const Quiz = () => {
 
   return (
     <>
-       <h2 className={`form-title ${isDarkMode ? 'dark' : ''}`}>Discover your reading personality!</h2>
+      <h2 className={`form-title ${isDarkMode ? 'dark' : ''}`}>Discover your reading personality!</h2>
       <div className={`form-container ${isDarkMode ? 'dark' : ''}`}>
         <form onSubmit={handleSubmit}>
           <h3 className={`question-title ${isDarkMode ? 'dark' : ''}`}>{currentQuestion.question}</h3>
@@ -132,13 +129,13 @@ const Quiz = () => {
 
           <div className="button-container">
             {currentQuestionIndex > 0 && (
-              <button type="button" className="button" onClick={handleBack}>Back</button>
+              <button type="button" className={`button ${isDarkMode ? 'dark' : ''}`} onClick={handleBack}>Back</button>
             )}
             {currentQuestionIndex < questions.length - 1 && isCurrentQuestionAnswered() && (
-              <button type="button" className="button" onClick={handleNext}>Next</button>
+              <button type="button" className={`button ${isDarkMode ? 'dark' : ''}`} onClick={handleNext}>Next</button>
             )}
             {currentQuestionIndex === questions.length - 1 && (
-              <button type="submit" className="button">Submit</button>
+              <button type="submit" className={`button ${isDarkMode ? 'dark' : ''}`}>Submit</button>
             )}
           </div>
         </form>
@@ -146,4 +143,6 @@ const Quiz = () => {
     </>
   );
 };
+
 export default Quiz;
+

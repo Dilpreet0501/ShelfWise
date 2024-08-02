@@ -2,21 +2,21 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHandPeace } from '@fortawesome/free-solid-svg-icons';
 import { NavLink } from 'react-router-dom';
-import About from "./../../pages/About/about"
- import "./home.css"
+import About from '../../pages/About/about';
 import Contact from '../../pages/Contact/contact';
 import { useDarkMode } from '../../Darkmode';
+import './home.css';
+
 const Home = () => {
-  const { isDarkMode } = useDarkMode()
+  const { isDarkMode } = useDarkMode();
+  
   return (
     <>
-    
-    
-    <div className={`main-content ${isDarkMode ? 'dark' : ''}`}>
+      <div className={`main-content ${isDarkMode ? 'dark' : ''}`}>
         <div className={`text-content ${isDarkMode ? 'dark' : ''}`}>
           <h1 className={`h1 ${isDarkMode ? 'dark' : ''}`}>
             Book Recommendation Engine
-            <FontAwesomeIcon icon={faHandPeace} style={{ color: "#c51550" }} />
+            <FontAwesomeIcon  className={`icon ${isDarkMode ? 'dark' : ''}`} icon={faHandPeace}/>
           </h1>
           <br />
           <br />
@@ -45,5 +45,3 @@ const Home = () => {
 };
 
 export default Home;
-
-
