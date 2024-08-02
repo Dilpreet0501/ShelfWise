@@ -1,16 +1,20 @@
 
 .bar {
-  height: 15vh;
+  height: auto;
   width: 100%;
+  display: flex;
+  flex-direction: column; 
   display: flex;
   justify-content: center;
   align-items: center;
 }
-
-.navbar {
+.navbar{
+  width: 90%;
+}
+.nav {
   margin-top: 20px;
   font-family: Montserrat, sans-serif;
-  width: 90%;
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -22,30 +26,29 @@
   position: relative;
 }
 
-.navbar.dark {
+.nav.dark {
   background-color: #333;
   color: #fff;
 }
+.dropdown{
+  display: none;
 
+}
 .logo {
   height: 60px;
   width: 60px;
   background-size: cover;
 }
 
-.navbar-brand {
-  display: flex;
-  align-items: center;
-}
 
-.navbar-menu ul {
+.navbar-menu ul,.active ul {
   display: flex;
   list-style-type: none;
   margin: 0;
   padding: 0;
 }
 
-.navbar-menu li {
+.navbar-menu li,.active li {
   margin: 0 1rem;
   align-items: center;
   padding-bottom: 2px;
@@ -56,7 +59,7 @@
   transition: background-size 0.3s, background-position 0s 0.3s; 
 }
 
-.navbar-menu li::after {
+.navbar-menu li::after, .active li::after {
   content: '';
   width: 0px;
   height: 10px;
@@ -65,13 +68,13 @@
   transition: 300ms;
 }
 
-.navbar-menu li:hover {
+.navbar-menu li:hover ,.active li:hover {
   background-position: 100% 100%; 
   background-size: 100% 4px;
   color: #c36969;
 }
 
-.navbar-menu a {
+.navbar-menu a , .active a{
   text-decoration: none;
   color: inherit;
 }
@@ -110,6 +113,7 @@
 .search-form {
   display: flex;
   margin-right: 1rem;
+ 
 }
 
 .search-input {
@@ -117,6 +121,7 @@
   border: 1px solid #c36969;
   border-radius: 4px 0 0 4px;
   font-size: 1rem;
+  width: 200px;
 }
 
 .search-form input:focus {
@@ -151,15 +156,40 @@
   display: none;
 }
 
+.nav.dark .search-input {
+  background-color: #444;
+  color: white;
+  border-color: #555;
+}
 
-@media (max-width: 950px) {
-  .bar {
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-   
-  }
+.nav.dark .search-button {
+  background-color: #555;
+  color:black
+}
+.nav.dark .menu-toggle {
+ 
+  color:black
+}
+.navbar.dark .active li {
+  color:white;
+}
 
+@media (min-width: 500px) and (max-width: 860px){
+  
+ 
+.logo{
+ height: 40px;
+ width: 40px;
+
+}
+.navbar-brand{
+  display: flex;
+  flex-direction: row;
+  gap:20px;
+}
+.nav{
+  padding: 1rem 1rem;
+}
   
 
   .navbar-menu {
@@ -172,19 +202,23 @@
     margin-top: 105rem;
   }
 
-  .navbar-menu.active {
+  .active {
     display: flex;
+    flex-direction: column;
+  
   }
 
-  .navbar-menu ul {
+  .active ul {
     flex-direction: column;
+    
     width: 100%;
   }
 
-  .navbar-menu li {
+  .active li {
+    
     margin: 1rem 0;
     width: 100%;
-    text-align: left;
+ 
     padding-left: 1rem;
   }
 
@@ -203,12 +237,12 @@
   .search-form {
   
     width: 100%;
-    margin-left: 20px;
+    margin-left: 10%;
    
   }
 
   .search-input {
-    width: 90%;
+    width: 150px;
   }
 
   .search-button {
@@ -217,25 +251,76 @@
   }
 }
 
+@media (max-width:500px)
+{.logo{
+display: none;
+}
+.navbar-brand{
+  display: flex;
+  flex-direction: row;
+  gap:20px;
+}
+.nav{
+  padding: 1rem 1rem;
+}
+  
 
-.navbar.dark .dropdown-content {
-  background-color: #444;
+  .navbar-menu {
+    
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 0;
+    margin-top: 105rem;
+  }
+
+  .active {
+    display: flex;
+    flex-direction: column;
+  
+  }
+
+  .active ul {
+    flex-direction: column;
+    
+    width: 100%;
+  }
+
+  .active li {
+    
+    margin: 1rem 0;
+    width: 100%;
+    /* text-align: left; */
+    padding-left: 1rem;
+  }
+
+  .menu-toggle {
+    display: flex;
+  
+  }
+
+  .navbar-end {
+    width: 100%;
+    justify-content:space-between;
+    /* gap: 5px; */
+  }
+
+  .search-form {
+  
+    width: 100%;
+    margin-left: 15px;
+    /* margin-left: 10%; */
+   
+  }
+
+  .search-input {
+    width: 130px;
+  }
+
+  .search-button {
+   
+    border-radius: 0 0 4px 4px;
+  }
 }
 
-.navbar.dark .dropdown-content a {
-  color: white;
-}
-
-.navbar.dark .dropdown-content a:hover {
-  background-color: #555;
-}
-
-.navbar.dark .search-input {
-  background-color: #444;
-  color: white;
-  border-color: #555;
-}
-
-.navbar.dark .search-button {
-  background-color: #555;
-}

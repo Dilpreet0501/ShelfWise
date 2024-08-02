@@ -18,8 +18,8 @@ body.dark {
   background-image: url("./../../../public/darkmode_bg.png") !important;
 }
 .main-content {
-  padding-left: 4rem !important;
-  padding-right: 4rem !important;
+  /* padding-left: 4rem !important;
+  padding-right: 4rem !important; */
   height: 100%;
   width: 100%;
   display: flex;
@@ -221,5 +221,11 @@ color:#ff6b81;
   }
   .read-more {
     font-size: 12px;
+  }
+}
+@media(max-width:500px){
+  .text-content{
+    width: 89%;
+   
   }
 }

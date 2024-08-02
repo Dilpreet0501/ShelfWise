@@ -20,8 +20,7 @@ body.dark {
 }
 
 .content {
-  padding-left: 4rem !important;
-  padding-right: 4rem !important;
+  
   height: 100vh;
   width: 100%;
   display: flex;
@@ -156,5 +155,14 @@ body.dark {
   }
   .sub {
     font-size: 1.2rem;
+  }
+}
+@media(max-width:500px){
+  .text{
+    width: 90%;
+  }
+  .grp{
+    height: 300px;
+    width: 350px; 
   }
 }

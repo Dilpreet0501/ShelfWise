@@ -65,15 +65,18 @@ const Navbar = () => {
   };
 
   return (
+    
     <div className='bar'>
       <nav className={`navbar ${isDarkMode ? 'dark' : 'light'}`}>
+        <div className='container'>
+      <div className={`nav ${isDarkMode ? 'dark' : 'light'}`}>
         <div className="navbar-brand">
           <div className={`logo ${isDarkMode ? 'dark' : 'light'}`} />
           <button className="menu-toggle" onClick={toggleMenu}>
             <FaBars />
           </button>
         </div>
-        <div className={`navbar-menu ${menuOpen ? 'active' : ''}`}>
+        <div className="navbar-menu">
           <ul>
             <li><NavLink to="/" >Home</NavLink></li>
             <li><NavLink to="/about" >About Us</NavLink></li>
@@ -100,8 +103,22 @@ const Navbar = () => {
             {isDarkMode ? <FaSun /> : <FaMoon />}
           </button>
         </div>
+        </div>
+        <div className={`dropdown ${menuOpen ? 'active':''}`}>
+          <ul>
+            <li><NavLink to="/" >Home</NavLink></li>
+            <li><NavLink to="/about" >About Us</NavLink></li>
+            <li><NavLink to="/quiz" >Explore</NavLink></li>
+            <li onClick={ switchPage } style={{ cursor: 'pointer' }}>Popular Books</li>
+            <li><NavLink to="/contact" >Contact Us</NavLink></li>
+          </ul>
+        </div>
+        </div>
+      
       </nav>
+      
     </div>
+  
   );
 };
 

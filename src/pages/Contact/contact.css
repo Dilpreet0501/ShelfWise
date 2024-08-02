@@ -228,3 +228,9 @@ body.dark {
     display: none;
   }
 }
+@media(max-width:500px)
+{
+  .contact-container{
+    width: 90%;
+  }
+}
