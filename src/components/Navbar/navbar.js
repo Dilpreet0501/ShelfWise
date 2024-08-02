@@ -1,19 +1,16 @@
 import React, { useState, useRef } from 'react';
-import { FaSun, FaMoon, FaSearch } from 'react-icons/fa';
+import { FaSun, FaMoon, FaSearch, FaBars } from 'react-icons/fa';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useDarkMode } from '../../Darkmode';
 import axios from 'axios';
 import './navbar.css';
 
 const Navbar = () => {
-  // const [DarkMode, setIsDarkMode] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
+  const [menuOpen, setMenuOpen] = useState(false);
   const navRef = useRef(null);
   const navigate = useNavigate();  
   const { isDarkMode, toggleDarkMode } = useDarkMode();
-  // const toggleDarkMode = () => {
-  //   setIsDarkMode(!DarkMode);
-  // };
 
   const handleSearchChange = (e) => {
     setSearchQuery(e.target.value);
@@ -27,15 +24,14 @@ const Navbar = () => {
     console.log('Searching for:', searchQuery);
 
     try {
-      const response = await axios.post('https://shelfwise-backend-render.onrender.com/booksget',{  
+      const response = await axios.post('https://shelfwise-backend-render.onrender.com/booksget', {  
         book_name: searchQuery
       });
        
       const data = response.data;
-      if (response.status === 200){
-      console.log(data.getbooks)
+      if (response.status === 200) {
+        console.log(data.getbooks);
         navigate('/books', { state: { recommendations: data.getbooks } });
-      
       } else {
         console.error(data.error);
       }
@@ -48,35 +44,41 @@ const Navbar = () => {
       navRef.current.value = ''; 
     }
   };
-const  switchpg=async()=>{
-  try {
-    const response = await axios.get('https://shelfwise-backend-render.onrender.com/high-rated')
- 
-     
-    const data = response.data;
-    if (response.status === 200){
-    console.log(data)
-      navigate('/books', { state: { recommendations: data } });
-    
-    } else {
-      console.error(data.error);
+
+  const switchPage = async () => {
+    try {
+      const response = await axios.get('https://shelfwise-backend-render.onrender.com/high-rated');
+      const data = response.data;
+      if (response.status === 200) {
+        console.log(data);
+        navigate('/books', { state: { recommendations: data } });
+      } else {
+        console.error(data.error);
+      }
+    } catch (error) {
+      console.error('Error fetching data:', error);
     }
-  } catch (error) {
-    console.error('Error fetching data:', error);
-  }
-}
+  };
+
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
+  };
+
   return (
     <div className='bar'>
       <nav className={`navbar ${isDarkMode ? 'dark' : 'light'}`}>
         <div className="navbar-brand">
-          <div className={`logo ${isDarkMode ? 'dark' : 'light'}`}/>
+          <div className={`logo ${isDarkMode ? 'dark' : 'light'}`} />
+          <button className="menu-toggle" onClick={toggleMenu}>
+            <FaBars />
+          </button>
         </div>
-        <div className="navbar-menu">
+        <div className={`navbar-menu ${menuOpen ? 'active' : ''}`}>
           <ul>
             <li><NavLink to="/" >Home</NavLink></li>
             <li><NavLink to="/about" >About Us</NavLink></li>
             <li><NavLink to="/quiz" >Explore</NavLink></li>
-            <li onClick={switchpg} style={{cursor:'pointer'}}>Popular Books</li>
+            <li onClick={ switchPage } style={{ cursor: 'pointer' }}>Popular Books</li>
             <li><NavLink to="/contact" >Contact Us</NavLink></li>
           </ul>
         </div>
@@ -104,3 +106,5 @@ const  switchpg=async()=>{
 };
 
 export default Navbar;
+
+

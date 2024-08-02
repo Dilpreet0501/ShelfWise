@@ -83,3 +83,53 @@ padding-right: 4rem !important;
 font-size: 1rem;
 color: #c51550;
   }
+  @media(max-width:1200px)
+  {
+    .grp{
+      height: 450px;
+     width: 500px;
+    }
+    .content{
+      gap:50px;
+      /* margin-top: 0; */
+    }
+  }
+  @media(max-width:1000px)
+  {
+    .grp{
+      height: 350px;
+     width: 400px;
+    }
+    .content{
+      gap:50px;
+      margin-top: -50px;
+    }
+    
+  }
+  @media (max-width: 900px)
+  {
+    .content{
+      flex-direction: column-reverse;
+      margin-top: 90px;
+      gap: 0px;
+      margin-bottom: 100px;
+    }
+    
+    
+   
+  }
+  @media(max-width:600px)
+  {
+    .content{
+      margin-top: 100px;
+    }
+    .head{
+      font-size: 1.5rem;
+    }
+    .para{
+      font-size: 13px;
+    }
+    .sub{
+      font-size: 1.2rem;
+    }
+  }

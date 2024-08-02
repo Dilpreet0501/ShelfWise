@@ -101,3 +101,23 @@
     margin-top: 20px;
     font-size: 1rem;
 }
+@media(max-width: 700px)
+{
+    .footer-section h2 {
+        font-size: 1.2rem;
+    } 
+    .footer-section p{
+        font-size: 0.9rem;
+    }
+    .footer-section li{
+        font-size: 0.9rem;
+    }
+    .footer-bottom {
+       
+        font-size: 0.8rem;
+    }
+    .footer-section input[type="email"] {
+        
+        font-size: 0.8rem;
+    }
+}
